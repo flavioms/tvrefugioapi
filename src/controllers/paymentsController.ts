@@ -1,11 +1,12 @@
+import { Response, Request } from 'express';
 import * as MercadoPago from 'mercadopago';
 
-const getFullUrl = req => {
+const getFullUrl = (req: Request) => {
   const url = req.protocol + '://' + req.get('host');
   return url;
 };
 
-export const checkout = async (req, res) => {
+export const checkout = async (req: Request, res: Response) => {
   MercadoPago.configure({
     sandbox: process.env.SANDBOX == 'true' ? true : false,
     access_token: process.env.MP_ACCESS_TOKEN,
