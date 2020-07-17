@@ -9,15 +9,15 @@ routes.get('/', (request, response) => {
 routes.post('/checkout', checkout);
 
 routes.get('/success', (req, res) => {
-  return res.render('success_screen');
+  return res.send(res.statusMessage);
 });
 
 routes.get('/pending', (req, res) => {
-  return res.render('pending_screen');
+  return res.send(res.statusMessage);
 });
 
 routes.get('/failure', (req, res) => {
-  return res.render('failure_screen');
+  return res.send(res.statusMessage);
 });
 
 export default routes;
