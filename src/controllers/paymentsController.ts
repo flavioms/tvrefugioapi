@@ -7,6 +7,7 @@ const getFullUrl = (req: Request) => {
 };
 
 export const checkout = async (req: Request, res: Response) => {
+  console.log(req.body);
   MercadoPago.configure({
     sandbox: process.env.SANDBOX == 'true' ? true : false,
     access_token: process.env.MP_ACCESS_TOKEN,
