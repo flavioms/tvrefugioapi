@@ -3,33 +3,6 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
-  "compilerOptions": {
-    "target": "es5",
-    "module": "commonjs",
-    "outFile": "./dist",
-    "outDir": "./src",
-    "strict": true,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "include": [
-      "**/*"
-    ],
-    "exclude": [
-      "assets",
-      "node_modules",
-      "bower_components",
-      "jspm_packages"
-    ]
-  },
-  "include": [
-    "**/*"
-  ],
-  "exclude": [
-    "assets",
-    "node_modules",
-    "bower_components",
-    "jspm_packages"
-  ],
   "scripts": {
     "start": "node build/index.js",
     "build": "tsc",
