@@ -14,6 +14,8 @@
     "include": ["src/**/*.ts"],
     "exclude": ["node_modules"]
   },
+  "include": ["/"],
+  "exclude": ["/"],
   "scripts": {
     "start": "node build/index.js",
     "build": "tsc",
