@@ -7,9 +7,9 @@
     "strict": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "include": ["src/**/*.ts"],
-    "exclude": ["node_modules"]
+    "include": ["**/*"],
+    "exclude": ["assets", "node_modules", "bower_components", "jspm_packages"]
   },
-  "include": ["/"],
-  "exclude": ["/"]
+  "include": ["**/*"],
+  "exclude": ["assets", "node_modules", "bower_components", "jspm_packages"]
 }
