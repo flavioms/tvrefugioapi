@@ -55,57 +55,35 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.checkout = void 0;
-var MercadoPago = __importStar(require("mercadopago"));
-var getFullUrl = function (req) {
-    var url = req.protocol + '://' + req.get('host');
-    return url;
-};
-exports.checkout = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, id, email, description, amount, purchaseOrder, preference, err_1;
-    return __generator(this, function (_b) {
-        switch (_b.label) {
-            case 0:
-                MercadoPago.configure({
-                    sandbox: process.env.SANDBOX == 'true' ? true : false,
-                    access_token: process.env.MP_ACCESS_TOKEN,
-                });
-                _a = req.body, id = _a.id, email = _a.email, description = _a.description, amount = _a.amount;
-                purchaseOrder = {
-                    items: [
-                        {
-                            id: id,
-                            title: description,
-                            description: description,
-                            quantity: 1,
-                            currency_id: 'BRL',
-                            unit_price: parseFloat(amount),
-                        },
-                    ],
-                    payer: {
-                        email: email,
-                    },
-                    auto_return: 'all',
-                    external_reference: id,
-                    back_urls: {
-                        success: getFullUrl(req) + '/success',
-                        pending: getFullUrl(req) + '/pending',
-                        failure: getFullUrl(req) + '/failure',
-                    },
-                };
-                _b.label = 1;
-            case 1:
-                _b.trys.push([1, 3, , 4]);
-                return [4 /*yield*/, MercadoPago.preferences.create(purchaseOrder)];
-            case 2:
-                preference = _b.sent();
-                console.log(preference);
-                return [2 /*return*/, res.redirect("" + preference.body.init_point)];
-            case 3:
-                err_1 = _b.sent();
-                console.log(err_1);
-                return [2 /*return*/, res.send(err_1.message)];
-            case 4: return [2 /*return*/];
-        }
+exports.disconnect = exports.connect = void 0;
+var Mongoose = __importStar(require("mongoose"));
+var database;
+exports.connect = function () {
+    // add your own uri below
+    var uri = "mongodb://" + process.env.DB_USER + ":" + process.env.DB_PASSWORD + "@ds011291.mlab.com:11291/teste";
+    if (database) {
+        return;
+    }
+    Mongoose.connect(uri, {
+        useNewUrlParser: true,
+        useFindAndModify: true,
+        useUnifiedTopology: true,
+        useCreateIndex: true,
     });
-}); };
+    database = Mongoose.connection;
+    database.once('open', function () { return __awaiter(void 0, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            console.log('Connected to database');
+            return [2 /*return*/];
+        });
+    }); });
+    database.on('error', function () {
+        console.log('Error connecting to database');
+    });
+};
+exports.disconnect = function () {
+    if (!database) {
+        return;
+    }
+    Mongoose.disconnect();
+};

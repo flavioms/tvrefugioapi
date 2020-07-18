@@ -10,6 +10,6 @@ var app = express_1.default();
 dotenv_1.default.config();
 app.use(express_1.default.json());
 app.use(routes_1.default);
-app.listen(3333, function () {
-    console.log('Server started on port 3333');
+app.listen(process.env.PORT || 5000, function () {
+    console.log("Server started on port " + process.env.PORT);
 });
