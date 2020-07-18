@@ -41,7 +41,7 @@ export const checkout = async (req: Request, res: Response) => {
   //Generate init_point to checkout
   try {
     const preference = await MercadoPago.preferences.create(purchaseOrder);
-    console.log(preference.body.init_point);
+    console.log(preference);
     return res.redirect(`${preference.body.init_point}`);
   } catch (err) {
     console.log(err);
